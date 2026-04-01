@@ -1,27 +1,3 @@
-<div markdown="1">
-<style>
-.back-to-top {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #58a6ff;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 5px;
-  text-decoration: none;
-  display: none;
-}
-
-.back-to-top:hover {
-  background-color:rgb(64, 122, 187);
-}
-
-.back-to-top.show {
-  display: block;
-}
-</style>
-</div>
-
 <a id="top"></a>
 
 <a href="#top" class="back-to-top">
