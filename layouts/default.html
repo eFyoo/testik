@@ -1,13 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8">
     <title>{{ page.title | default: site.title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <style>
+      :root {
+        --accent: #58a6ff;
+        --bg-card: #161b22;
+        --border-color: #30363d;
+      }
+      
+      body { background-color: #0d1117; color: #c9d1d9; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; }
+
+      /* Навигационная панель */
+      .tier-nav {
+        position: sticky;
+        top: 0;
+        background: rgba(13, 17, 23, 0.9);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+        padding: 10px 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .tier-link {
+        color: #8b949e;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 5px 10px;
+        border-radius: 6px;
+        transition: 0.2s;
+      }
+
+      .tier-link:hover { color: var(--accent); background: #21262d; }
+
+      .main-container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+      /* Стилизация таблиц под "Карточки" */
+      table { border-collapse: separate; border-spacing: 0 10px; width: 100%; margin-bottom: 50px; }
+      th { display: none; } /* Прячем заголовки таблицы Markdown */
+      td { background: var(--bg-card); border: 1px solid var(--border-color); padding: 20px !important; border-radius: 8px; }
+      
+      /* Подсветка категорий в таблице */
+      td:first-child { 
+        width: 150px; 
+        font-weight: bold; 
+        text-align: center; 
+        border-right: 4px solid var(--accent); 
+        color: var(--accent);
+      }
+
+      img { border-radius: 8px; max-width: 100%; height: auto; margin-top: 15px; border: 1px solid var(--border-color); }
+      
+      h1 { border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-top: 40px; }
+      code { background: #21262d; padding: 2px 5px; border-radius: 4px; }
+    </style>
   </head>
   <body>
-    {{ content }}
+    <nav class="tier-nav">
+        <a href="#top" class="tier-link">🔝 Топ</a>
+        <a href="#маст-плей-95-10" class="tier-link">⭐ Mast Play</a>
+        <a href="#почти-маст-плей-85-9" class="tier-link">👍 Almost</a>
+        <a href="#прикольные-игры-8" class="tier-link">🎮 Good</a>
+        <a href="#неплохие-игры-7-75" class="tier-link">👌 Fine</a>
+    </nav>
+    
+    <div class="main-container">
+      {{ content }}
+    </div>
+
+    <script>
+      // Плавный скролл для навигации
+      document.querySelectorAll('.tier-link').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+              e.preventDefault();
+              document.querySelector(this.getAttribute('href')).scrollIntoView({
+                  behavior: 'smooth'
+              });
+          });
+      });
+    </script>
   </body>
 </html>
